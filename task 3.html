@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3 - HTML Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d4dad5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #050404;
+        }
+
+        table {
+            width: 60%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #ddd7d7ea;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        caption {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            color: #444;
+        }
+
+        th, td {
+            border: 1px solid #1a1818;
+            padding: 10px;
+            text-align: center;
+        }
+
+        thead {
+            background-color: #d9edf7;
+        }
+
+        tfoot {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Marks Table</h1>
+
+    <table>
+        <caption>Marks of Students in Five Subjects</caption>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Math</th>
+                <th>Science</th>
+                <th>English</th>
+                <th>Marathi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Siya</td>
+                <td>85</td>
+                <td>90</td>
+                <td>89</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <td>Priya</td>
+                <td>78</td>
+                <td>88</td>
+                <td>93</td>
+                <td>84</td>
+            </tr>
+            <tr>
+                <td>Aarav</td>
+                <td>92</td>
+                <td>95</td>
+                <td>90</td>
+                <td>87</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Total Students: 3</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
+
