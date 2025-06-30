@@ -1,0 +1,230 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thali & Tales Restaurant - Menu & Order</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    nav[role="navigation"] ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      border-bottom: 2px solid #007acc;
+    }
+    nav[role="navigation"] a {
+      text-decoration: none;
+      color: #007acc;
+      font-weight: bold;
+      padding: 8px 12px;
+      display: inline-block;
+    }
+    nav[role="navigation"] a:focus,
+    nav[role="navigation"] a:hover {
+      background-color: #007acc;
+      color: white;
+      outline: none;
+      border-radius: 4px;
+    }
+    .menu-section {
+      margin-bottom: 30px;
+    }
+    .menu-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+    .menu-item h3 {
+      margin: 0 0 5px 0;
+    }
+    .menu-item p {
+      margin: 0 0 5px 0;
+    }
+    form div {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    select, input[type="number"], textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 4px;
+      width: 100%;
+    }
+    button:hover,
+    button:focus {
+      background-color: #005fa3;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header role="banner">
+    <h1>Thali & Tales Restaurant</h1>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav role="navigation" aria-label="Primary menu categories">
+    <ul>
+      <li><a href="#starters">Starters</a></li>
+      <li><a href="#drinks">Drinks</a></li>
+      <li><a href="#main-course">Main Course</a></li>
+      <li><a href="#thalis">Thalis</a></li>
+    </ul>
+  </nav>
+
+  <main role="main">
+    <!-- Starters Section -->
+    <section class="menu-section" aria-labelledby="startersHeading" id="starters">
+      <h2 id="startersHeading">Starters</h2>
+
+      <article class="menu-item" role="region" aria-labelledby="item1Name">
+        <h3 id="item1Name">Paneer Tikka</h3>
+        <p>Spiced paneer cubes grilled to perfection.</p>
+        <p><strong>Price:</strong> ₹250</p>
+      </article>
+
+      <article class="menu-item" role="region" aria-labelledby="item2Name">
+        <h3 id="item2Name">Veg Spring Rolls</h3>
+        <p>Crispy rolls stuffed with fresh vegetables.</p>
+        <p><strong>Price:</strong> ₹200</p>
+      </article>
+    </section>
+
+    <!-- Drinks Section -->
+    <section class="menu-section" aria-labelledby="drinksHeading" id="drinks">
+      <h2 id="drinksHeading">Drinks</h2>
+
+      <article class="menu-item" role="region" aria-labelledby="item3Name">
+        <h3 id="item3Name">Masala Chai</h3>
+        <p>Traditional spiced Indian tea.</p>
+        <p><strong>Price:</strong> ₹50</p>
+      </article>
+
+      <article class="menu-item" role="region" aria-labelledby="item4Name">
+        <h3 id="item4Name">Fresh Lime Soda</h3>
+        <p>Refreshing lime soda with a hint of mint.</p>
+        <p><strong>Price:</strong> ₹70</p>
+      </article>
+    </section>
+
+    <!-- Main Course Section -->
+    <section class="menu-section" aria-labelledby="mainCourseHeading" id="main-course">
+      <h2 id="mainCourseHeading">Main Course</h2>
+
+      <article class="menu-item" role="region" aria-labelledby="item5Name">
+        <h3 id="item5Name">Paneer Butter Masala</h3>
+        <p>Rich and creamy paneer curry with aromatic spices.</p>
+        <p><strong>Price:</strong> ₹300</p>
+      </article>
+
+      <article class="menu-item" role="region" aria-labelledby="item6Name">
+        <h3 id="item6Name">Dal Makhani</h3>
+        <p>Slow-cooked black lentils in buttery sauce.</p>
+        <p><strong>Price:</strong> ₹280</p>
+      </article>
+
+      <article class="menu-item" role="region" aria-labelledby="item7Name">
+        <h3 id="item7Name">Garlic Naan</h3>
+        <p>Soft Indian bread topped with garlic and butter.</p>
+        <p><strong>Price:</strong> ₹100</p>
+      </article>
+    </section>
+
+    <!-- Thalis Section -->
+    <section class="menu-section" aria-labelledby="thalisHeading" id="thalis">
+      <h2 id="thalisHeading">Thalis</h2>
+
+      <article class="menu-item" role="region" aria-labelledby="item8Name">
+        <h3 id="item8Name">Vegetarian Thali</h3>
+        <p>A platter with rice, dal, vegetable curry, roti, and salad.</p>
+        <p><strong>Price:</strong> ₹350</p>
+      </article>
+
+      <article class="menu-item" role="region" aria-labelledby="item9Name">
+        <h3 id="item9Name">Punjabi Thali</h3>
+        <p>Includes paneer, dal makhani, rice, roti, and raita.</p>
+        <p><strong>Price:</strong> ₹400</p>
+      </article>
+    </section>
+
+    <!-- Order Form -->
+    <section aria-labelledby="orderHeading">
+      <h2 id="orderHeading">Place Your Order</h2>
+      <form action="#" method="post" aria-label="Table order form">
+        <div>
+          <label for="tableNumber">Table Number:</label>
+          <input type="number" id="tableNumber" name="tableNumber" min="1" required aria-required="true" />
+        </div>
+
+        <div>
+          <label for="benchNumber">Bench Number:</label>
+          <input type="number" id="benchNumber" name="benchNumber" min="1" required aria-required="true" />
+        </div>
+
+        <div>
+          <label for="menuSelection">Select Menu Item:</label>
+          <select id="menuSelection" name="menuSelection" required aria-required="true">
+            <option value="" disabled selected>Select an item</option>
+            <option value="paneer_tikka">Paneer Tikka - ₹250</option>
+            <option value="veg_spring_rolls">Veg Spring Rolls - ₹200</option>
+            <option value="masala_chai">Masala Chai - ₹50</option>
+            <option value="fresh_lime_soda">Fresh Lime Soda - ₹70</option>
+            <option value="paneer_butter_masala">Paneer Butter Masala - ₹300</option>
+            <option value="dal_makhani">Dal Makhani - ₹280</option>
+            <option value="garlic_naan">Garlic Naan - ₹100</option>
+            <option value="vegetarian_thali">Vegetarian Thali - ₹350</option>
+            <option value="punjabi_thali">Punjabi Thali - ₹400</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="1" value="1" required aria-required="true" />
+        </div>
+
+        <div>
+          <label for="specialRequest">Special Requests (optional):</label>
+          <textarea id="specialRequest" name="specialRequest" rows="3"></textarea>
+        </div>
+
+        <button type="submit">Submit Order</button>
+      </form>
+    </section>
+  </main>
+
+  <footer role="contentinfo" style="text-align:center; margin-top: 40px;">
+    <p>&copy; 2025 Thali & Tales Restaurant</p>
+  </footer>
+
+</body>
+</html>
