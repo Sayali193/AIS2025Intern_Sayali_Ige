@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible College Feedback Form</title>
+</head>
+<body>
+
+  <!-- Skip Link for Screen Readers -->
+  <a href="#maincontent" style="position: absolute; top: -40px; left: 0; background: #000; color: #fff; padding: 8px;" onfocus="this.style.top='0'" onblur="this.style.top='-40px'">Skip to main content</a>
+
+  <!-- Header with Logo -->
+  <header>
+    <img src="https://irefgms.com/wp-content/uploads/2024/09/download-1.jpg" alt="Zeal College Logo" width="100">
+    <h1>Zeal College Feedback Form</h1>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="maincontent">
+    <form action="#" method="post" aria-label="College Feedback Form">
+      
+      <fieldset>
+        <legend>Student Information</legend>
+
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="roll">Roll Number:</label><br>
+        <input type="text" id="roll" name="roll" required><br><br>
+
+        <label for="branch">Branch:</label><br>
+        <input type="text" id="branch" name="branch" required><br><br>
+
+        <label for="year">Year:</label><br>
+        <select id="year" name="year" required>
+          <option value="">--Select Year--</option>
+          <option value="First">First</option>
+          <option value="Second">Second</option>
+          <option value="Third">Third</option>
+          <option value="Fourth">Fourth</option>
+        </select><br><br>
+      </fieldset>
+
+      <fieldset>
+        <legend>Feedback</legend>
+
+        <label>1. Quality of Teaching:</label><br>
+        <input type="radio" id="teach-excellent" name="teaching" value="Excellent" required>
+        <label for="teach-excellent">Excellent</label><br>
+
+        <input type="radio" id="teach-good" name="teaching" value="Good">
+        <label for="teach-good">Good</label><br>
+
+        <input type="radio" id="teach-average" name="teaching" value="Average">
+        <label for="teach-average">Average</label><br>
+
+        <input type="radio" id="teach-poor" name="teaching" value="Poor">
+        <label for="teach-poor">Poor</label><br><br>
+
+        <label>2. Infrastructure & Facilities:</label><br>
+        <input type="radio" id="infra-excellent" name="infra" value="Excellent" required>
+        <label for="infra-excellent">Excellent</label><br>
+
+        <input type="radio" id="infra-good" name="infra" value="Good">
+        <label for="infra-good">Good</label><br>
+
+        <input type="radio" id="infra-average" name="infra" value="Average">
+        <label for="infra-average">Average</label><br>
+
+        <input type="radio" id="infra-poor" name="infra" value="Poor">
+        <label for="infra-poor">Poor</label><br><br>
+
+        <label for="suggestions">Additional Suggestions:</label><br>
+        <textarea id="suggestions" name="suggestions" rows="4" cols="50" placeholder="Write your feedback here..."></textarea><br><br>
+      </fieldset>
+
+      <input type="submit" value="Submit Feedback">
+      <input type="reset" value="Reset Form">
+
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Zeal College. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
