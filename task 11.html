@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Canvas Drawing App</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    canvas {
+      background: #ffffff;
+      border: 2px solid #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      cursor: crosshair;
+    }
+    .controls {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .controls label {
+      font-size: 14px;
+      margin-right: 5px;
+    }
+    .controls input[type="range"] {
+      width: 100px;
+    }
+    button {
+      padding: 8px 15px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #eraserBtn {
+      background-color: #f0ad4e;
+      color: white;
+    }
+    #clearBtn {
+      background-color: #d9534f;
+      color: white;
+    }
+    #eraserBtn.active {
+      background-color: #ec971f;
+    }
+  </style>
+</head>
+<body>
+
+  <h2> Draw something</h2>
+
+  <canvas id="canvas" width="600" height="500"></canvas>
+
+  <div class="controls">
+    <label>Color: <input type="color" id="colorPicker" value="#000000"></label>
+    <label>Width: <input type="range" id="brushSize" min="1" max="30" value="5"></label>
+    <button id="eraserBtn">Eraser</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const colorPicker = document.getElementById('colorPicker');
+    const brushSize = document.getElementById('brushSize');
+    const eraserBtn = document.getElementById('eraserBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    let drawing = false;
+    let isEraser = false;
+
+    // Initial brush settings
+    ctx.lineWidth = brushSize.value;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = colorPicker.value;
+
+    canvas.addEventListener('mousedown', (e) => {
+      drawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!drawing) return;
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mouseup', () => drawing = false);
+    canvas.addEventListener('mouseleave', () => drawing = false);
+
+    // Color picker
+    colorPicker.addEventListener('input', () => {
+      ctx.strokeStyle = colorPicker.value;
+      isEraser = false;
+      eraserBtn.classList.remove('active');
+    });
+
+    // Brush size
+    brushSize.addEventListener('input', () => {
+      ctx.lineWidth = brushSize.value;
+    });
+
+    // Eraser toggle
+    eraserBtn.addEventListener('click', () => {
+      isEraser = !isEraser;
+      if (isEraser) {
+        ctx.strokeStyle = "#ffffff"; // Erase with background color
+        eraserBtn.classList.add('active');
+      } else {
+        ctx.strokeStyle = colorPicker.value;
+        eraserBtn.classList.remove('active');
+      }
+    });
+
+    // Clear canvas
+    clearBtn.addEventListener('click', () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  </script>
+
+</body>
+</html>
+
+
+

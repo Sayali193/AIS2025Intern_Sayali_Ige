@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List with Export & Date</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .todo-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 450px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 65%;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 12px;
+      font-size: 14px;
+      margin-left: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #e9ecef;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    .task-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .task-date {
+      font-size: 12px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .buttons button {
+      background: #007bff;
+      color: white;
+    }
+
+    .buttons .delete {
+      background: #dc3545;
+    }
+
+    .buttons .save {
+      background: #28a745;
+    }
+
+    #exportBtn {
+      margin-top: 10px;
+      background: #5cb85c;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="todo-container">
+    <h2> To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Enter a task...">
+    <button onclick="addTask()">Add</button>
+    <button id="exportBtn">Export Tasks</button>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    function renderTasks() {
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+
+      tasks.forEach((taskObj, index) => {
+        const li = document.createElement("li");
+
+        const top = document.createElement("div");
+        top.className = "task-top";
+
+        const taskText = document.createElement("span");
+        taskText.textContent = taskObj.text;
+        taskText.className = "task-text";
+
+        const buttonGroup = document.createElement("div");
+        buttonGroup.className = "buttons";
+
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.onclick = () => editTask(index, taskText);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "delete";
+        deleteBtn.onclick = () => deleteTask(index);
+
+        buttonGroup.appendChild(editBtn);
+        buttonGroup.appendChild(deleteBtn);
+        top.appendChild(taskText);
+        top.appendChild(buttonGroup);
+
+        const date = document.createElement("div");
+        date.className = "task-date";
+        date.textContent = "Added on: " + taskObj.date;
+
+        li.appendChild(top);
+        li.appendChild(date);
+        taskList.appendChild(li);
+      });
+
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const text = input.value.trim();
+      if (text !== "") {
+        const newTask = {
+          text: text,
+          date: new Date().toLocaleString()
+        };
+        tasks.push(newTask);
+        input.value = "";
+        renderTasks();
+      }
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function editTask(index, taskTextSpan) {
+      taskTextSpan.contentEditable = true;
+      taskTextSpan.focus();
+      taskTextSpan.style.border = "1px dashed #999";
+      const saveBtn = document.createElement("button");
+      saveBtn.textContent = "Save";
+      saveBtn.className = "save";
+      saveBtn.onclick = () => {
+        tasks[index].text = taskTextSpan.textContent.trim();
+        taskTextSpan.contentEditable = false;
+        taskTextSpan.style.border = "none";
+        renderTasks();
+      };
+      taskTextSpan.parentElement.querySelector(".buttons").appendChild(saveBtn);
+    }
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(tasks, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "todo-tasks.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    renderTasks();
+  </script>
+
+</body>
+</html>
