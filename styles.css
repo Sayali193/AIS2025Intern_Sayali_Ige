@@ -1,0 +1,78 @@
+/* Body styling */
+body {
+  background-color: #e0f7fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 30px;
+  height: 160vh; /* to allow scrolling */
+  position: relative;
+}
+
+/* Common card styles */
+.card {
+  background-color: #ffffff;
+  border: 2px solid #0288d1;
+  border-radius: 10px;
+  padding: 20px 25px;
+  width: 280px;
+  box-shadow: 0 5px 12px rgba(2, 136, 209, 0.3);
+  color: #01579b;
+  font-weight: 600;
+}
+
+/* Relative positioned card */
+.relative-card {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* Absolute positioned card */
+.absolute-card {
+  position: absolute;
+  top: 120px;
+  right: 40px;
+}
+
+/* Fixed positioned card */
+.fixed-card {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 260px;
+  background-color: #0288d1;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  font-weight: normal;
+}
+
+/* Headings */
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.6rem;
+}
+
+/* Paragraphs */
+.card p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* For better visibility on small screens */
+@media (max-width: 600px) {
+  .absolute-card {
+    position: relative;
+    margin-bottom: 30px;
+    top: auto;
+    right: auto;
+  }
+  .fixed-card {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 0;
+  }
+}

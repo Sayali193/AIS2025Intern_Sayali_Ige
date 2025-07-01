@@ -1,0 +1,25 @@
+/* Heading style */
+h1 {
+    color: #333;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Paragraph style */
+p {
+    color: #444;
+    font-size: 18px;
+    margin: 20px;
+}
+
+/* Link style */
+a {
+    color: #005a87;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
