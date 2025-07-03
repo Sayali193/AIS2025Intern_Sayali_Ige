@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Top Indian Scientists - Hover Cards</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f7fd;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .card {
+      background: #fff;
+      width: 250px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: filter 0.3s ease;
+    }
+
+    .card:hover img {
+      filter: brightness(1.15) contrast(1.1);
+    }
+
+    .info {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .info h3 {
+      margin: 10px 0 5px;
+      color: #0d47a1;
+    }
+
+    .info p {
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="https://cdn.britannica.com/56/148856-004-2F59E2D9/APJ-2008.jpg" alt="APJ Abdul Kalam">
+    <div class="info">
+      <h3>Dr. A.P.J. Abdul Kalam</h3>
+      <p>Missile Man of India & Former President</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://static.india.com/wp-content/uploads/2023/11/cvraman7.jpg?impolicy=Medium_Widthonly&w=400&h=800" alt="C.V. Raman">
+    <div class="info">
+      <h3>Sir C.V. Raman</h3>
+      <p>Nobel Prize in Physics – Raman Effect</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://th-i.thgim.com/public/migration_catalog/article11305413.ece/alternates/FREE_1200/23ISBS_HOMI_BHABHA.1" alt="Homi Bhabha">
+    <div class="info">
+      <h3>Dr. Homi Bhabha</h3>
+      <p>Father of India’s Nuclear Program</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/1920_Jagadish_Chandra_Bose.jpg/250px-1920_Jagadish_Chandra_Bose.jpg" alt="J.C. Bose">
+    <div class="info">
+      <h3>J.C. Bose</h3>
+      <p>Pioneer of Wireless Communication</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Srinivasa_Ramanujan_-_OPC_-_1.jpg" alt="Ramanujan">
+    <div class="info">
+      <h3>Srinivasa Ramanujan</h3>
+      <p>Genius Mathematician of India</p>
+    </div>
+  </div>
+
+</body>
+</html>
+
