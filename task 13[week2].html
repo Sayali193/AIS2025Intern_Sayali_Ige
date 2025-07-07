@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lightbox Gallery</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  figure {
+    margin: 0;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+  }
+
+  figure img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  figure:hover img {
+    transform: scale(1.05);
+  }
+
+  figcaption {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  /* Lightbox styles */
+  #lightboxOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  #lightboxOverlay.active {
+    display: flex;
+  }
+
+  #lightboxContent {
+    position: relative;
+    max-width: 90%;
+    max-height: 80%;
+  }
+
+  #lightboxContent img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  #lightboxCaption {
+    color: #ddd;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  #lightboxClose {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- Gallery -->
+<figure data-caption="Beautiful Mountain">
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Mountain" />
+  <figcaption>Mountain</figcaption>
+</figure>
+
+<figure data-caption="Calm Sea">
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Sea" />
+  <figcaption>Sea</figcaption>
+</figure>
+
+<figure data-caption="Forest Path">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRghoKfNZ4HyPjhL0EL2FK3rijHdTHmeD7bRg&s" alt="Forest" />
+  <figcaption>Forest</figcaption>
+</figure>
+
+<!-- Lightbox -->
+<div id="lightboxOverlay" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" tabindex="-1">
+  <div id="lightboxContent">
+    <button id="lightboxClose" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lightboxImage" />
+    <div id="lightboxCaption"></div>
+  </div>
+</div>
+
+<script>
+  const figures = document.querySelectorAll('figure');
+  const lightboxOverlay = document.getElementById('lightboxOverlay');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  figures.forEach(figure => {
+    figure.addEventListener('click', () => {
+      const img = figure.querySelector('img');
+      const caption = figure.dataset.caption || figure.querySelector('figcaption').textContent;
+
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+      lightboxCaption.textContent = caption;
+
+      lightboxOverlay.classList.add('active');
+      lightboxOverlay.focus();
+    });
+  });
+
+  function closeLightbox() {
+    lightboxOverlay.classList.remove('active');
+    lightboxImage.src = '';
+    lightboxCaption.textContent = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxOverlay.addEventListener('click', (e) => {
+    if (e.target === lightboxOverlay) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+</script>
+
+</body>
+</html>

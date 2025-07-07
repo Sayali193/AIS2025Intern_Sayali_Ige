@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple API Fetch</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+    .user {
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Users List</h2>
+  <div id="users"></div>
+
+  <script>
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => {
+        const usersDiv = document.getElementById('users');
+
+        data.forEach(user => {
+          const userDiv = document.createElement('div');
+          userDiv.className = 'user';
+          userDiv.innerHTML = `
+            <strong>${user.name}</strong><br>
+            Email: ${user.email}<br>
+            City: ${user.address.city}
+          `;
+          usersDiv.appendChild(userDiv);
+        });
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  </script>
+
+</body>
+</html>

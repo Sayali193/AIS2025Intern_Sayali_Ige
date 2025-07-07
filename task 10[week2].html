@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enhanced To-Do App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .todo-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      width: 350px;
+      margin: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 8px 14px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      background-color: #5cb85c;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4cae4c;
+    }
+
+    .clear-btn {
+      background-color: #d9534f;
+    }
+
+    .clear-btn:hover {
+      background-color: #c9302c;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    li {
+      margin: 8px 0;
+      padding: 8px;
+      background: #e6f7ff;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .task-text {
+      flex: 1;
+      margin-left: 10px;
+    }
+
+    .toggle-btn {
+      background: #0275d8;
+      margin-right: 8px;
+    }
+
+    .toggle-btn:hover {
+      background: #025aa5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="todo-box">
+    <h2>📌 To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Add a task..." />
+    <br>
+    <button onclick="addTask()">Add Task</button>
+    <button class="clear-btn" onclick="clearAll()">Clear All</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+
+    let tasks = JSON.parse(localStorage.getItem("todoTasks")) || [];
+    renderTasks();
+
+    function addTask() {
+      const text = taskInput.value.trim();
+      if (text === "") return;
+
+      tasks.push({ text, done: false });
+      updateLocalStorage();
+      renderTasks();
+      taskInput.value = "";
+    }
+
+    function toggleTask(index) {
+      tasks[index].done = !tasks[index].done;
+      updateLocalStorage();
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      updateLocalStorage();
+      renderTasks();
+    }
+
+    function clearAll() {
+      tasks = [];
+      updateLocalStorage();
+      renderTasks();
+    }
+
+    function updateLocalStorage() {
+      localStorage.setItem("todoTasks", JSON.stringify(tasks));
+    }
+
+    function renderTasks() {
+      taskList.innerHTML = "";
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        
+        const toggleBtn = document.createElement("button");
+        toggleBtn.textContent = task.done ? "Undo" : "Done";
+        toggleBtn.className = "toggle-btn";
+        toggleBtn.onclick = () => toggleTask(index);
+
+        const span = document.createElement("span");
+        span.textContent = task.text;
+        span.className = "task-text";
+        if (task.done) span.classList.add("done");
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "❌";
+        delBtn.className = "clear-btn";
+        delBtn.onclick = () => deleteTask(index);
+
+        li.appendChild(toggleBtn);
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        taskList.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>
+

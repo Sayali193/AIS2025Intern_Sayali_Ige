@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Theme Toggle with CSS Variables</title>
+<style>
+  /* Define CSS variables for light theme (default) */
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --primary-color: #4a90e2;
+  }
+
+  /* Dark theme variables */
+  body.dark-theme {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --primary-color: #bb86fc;
+  }
+
+  /* Use variables */
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px;
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<h1>Theme Toggle Example</h1>
+<p>This example uses CSS variables and JavaScript to switch between light and dark themes.</p>
+
+<button id="toggleBtn">Toggle Theme</button>
+
+<script>
+  const toggleBtn = document.getElementById('toggleBtn');
+  const body = document.body;
+
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+
+    if(body.classList.contains('dark-theme')) {
+      toggleBtn.textContent = 'Switch to Light Theme';
+    } else {
+      toggleBtn.textContent = 'Switch to Dark Theme';
+    }
+  });
+</script>
+
+</body>
+</html>

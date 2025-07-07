@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Text Transformer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e2f;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      transition: color 0.5s ease;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background: linear-gradient(45deg, #ff0080, #7928ca);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="magicText">Click the button to reveal magic!</h1>
+  <button onclick="revealMagic()">Transform Text</button>
+
+  <script>
+    const messages = [
+      "Welcome to the Web Wizardry!",
+      "✨ CSS + JS = Magic ✨",
+      "You are learning DOM like a pro!",
+      "Surprise! JavaScript is fun!",
+      "🎉 You clicked the magic button!"
+    ];
+
+    function getRandomColor() {
+      const colors = ["#ff4d4d", "#00ccff", "#66ff66", "#ffcc00", "#ff66ff"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function revealMagic() {
+      const textEl = document.getElementById("magicText");
+      const message = messages[Math.floor(Math.random() * messages.length)];
+      const color = getRandomColor();
+
+      // Clear existing text
+      textEl.textContent = "";
+
+      // Typing effect
+      let i = 0;
+      const typer = setInterval(() => {
+        textEl.textContent += message.charAt(i);
+        textEl.style.color = color;
+        i++;
+        if (i >= message.length) {
+          clearInterval(typer);
+        }
+      }, 70);
+    }
+  </script>
+
+</body>
+</html>
